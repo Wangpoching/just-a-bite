@@ -13,20 +13,20 @@
 
 * 讓人食指大動的菜單
 
-<img src="https://github.com/Wangpoching/react-blog-redux-/blob/master/src/images/screenshots/dark.png" width="300" align=center/>
+<img src="https://github.com/Wangpoching/just-a-bite/blob/master/public/images/screenshots/menu.png" width="300" align=center/>
 
 * 抽獎系統
   * 大獎 - 來回機票
   * 二獎 - 40 吋液晶電視
   * 三獎 - 知名 YouTuber 簽名握手會入場券
 
-<img src="https://github.com/Wangpoching/react-blog-redux-/blob/master/src/images/screenshots/forget.png" width="300" align=center/> 
+<img src="https://github.com/Wangpoching/just-a-bite/blob/master/public/images/screenshots/prize.png" width="300" align=center/> 
 
 * 個人購物車
 * 查詢訂單
 * 常見問題
 
-<img src="https://github.com/Wangpoching/react-blog-redux-/blob/master/src/images/screenshots/forget.png" width="300" align=center/> 
+<img src="https://github.com/Wangpoching/just-a-bite/blob/master/public/images/screenshots/QA.png" width="300" align=center/> 
 
 * 管理後臺
 * 金流系統
