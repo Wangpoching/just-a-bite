@@ -110,7 +110,7 @@ app.get('/order-edit', userController.isAdmin, adminController.checkQuerySerial,
 app.post('/order-edit', userController.isAdmin, adminController.checkEditOrderInput, adminController.updateOrderInformation)
 
 // handle restaurant
-app.get('/index', adminController.getExpensiveDishes, restaurantController.renderIndex)
+app.get('/', adminController.getExpensiveDishes, restaurantController.renderIndex)
 app.get('/prize', restaurantController.renderPrize)
 app.get('/FAQ', adminController.getAllFAQs, restaurantController.renderFAQ)
 app.get('/menu', adminController.getBestsellings, adminController.getAllDishes, adminController.countCartDetails, restaurantController.renderMenu)
