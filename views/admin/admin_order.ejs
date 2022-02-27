@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/admin_order.css">
+</head>
+
+<body>
+
+  <%- include('template/admin-navbar') %>
+
+  <div class="orders__wrapper">
+    <section class="orders">
+      <h2 class="orders__title">訂單後台</h2>
+      <div class="search">
+        <form class="search-filter" action="/admin-order" method="get">       
+          <input type="radio" name="status" value="1" id="filter1" <%= status === 1? 'checked':''%>><label for="filter1">訂單完成</label>
+          <input type="radio" name="status" value="2" id="filter2" <%= status === 2? 'checked':''%>><label for="filter2">配送中</label>
+          <input type="radio" name="status" value="3" id="filter3" <%= status === 3? 'checked':''%>><label for="filter3">訂單取消</label>
+        </form>
+        <form class="search-order" action="/admin-order" method="get">
+          <input type="text" name="serial" placeholder="搜尋訂單號碼" />
+          <input type="image" src="images/search.png" />
+        </form>
+        <form class="search-order" action="/admin-order" method="get">
+          <input type="text" name="username" placeholder="搜尋帳號" />
+          <input type="image" src="images/search.png" />
+        </form>
+      </div>
+      <table class="orders__table">
+        <thead>
+        <tr>
+          <th>訂單編號</th>
+          <th>帳號</th>
+          <th>時間</th>
+          <th>金額(不含運)</th>
+          <th>狀態</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (const order of orders) { %>
+          <tr>
+            <td><a href="<%= `/detail?serial=${order.serial}` %>"><%= order.serial %></a></td>
+            <td><a href="<%= `/admin-order?uername=${order.User.username}` %>"><%= order.User.username %></a></td>
+            <td><%= getTime(order.createdAt) %></td>
+            <td><%= order.amount %></td>
+            <% 
+            const status = order.status
+            switch (status) { 
+                case 1: %>
+                <td>訂單完成</td>
+              <% break; 
+                case 2: %>
+                <td>配送中</td>
+              <% break;
+                case 3: %>
+                <td class="canceled">訂單取消</td>
+              <% break; 
+              default: %>
+                <td class="canceled">訂單取消</td>
+             <% } %>
+            <td><a href="<%= `/order-edit?serial=${order.serial}` %>"><img src="images/edit.png"></td>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </section> 
+  </div>
+  <div class="panigation__wrapper">
+    <div class="page-info">
+      <span>共有 <%= totalOrders %> 筆訂單</span>
+      <span>第 <%= page %> 頁</span>
+    </div>
+    <div class="pagination_container">
+      <div class="pagination_buttons">
+        <a href="<%= generatePageUrl(1, queryFilter) %>">第一頁</a>
+        <a href="<%= generatePageUrl(totalPages, queryFilter) %>">最後一頁</a>
+      </div>
+      <ul class="pagination">
+      <%
+        const pagination = Math.ceil(page/pagesPerPagination)
+        const paginationOffset = (pagination - 1) * pagesPerPagination + 1;
+        const totalPagination = Math.ceil(totalPages/pagesPerPagination);
+      %>
+      <% if (pagination !== 1) { %>
+          <li><a href=<%= generatePageUrl(paginationOffset - pagesPerPagination, queryFilter) %>>«</a><li>
+      <% } %>
+      <% for (let i = paginationOffset; i < (paginationOffset + pagesPerPagination); i++) { %>
+        <% if (i > totalPages) {
+          break
+        } %>
+        <% if (i === page) { %>
+          <li><a class="active" href="<%= generatePageUrl(i, queryFilter) %>"><%= i %></a></li>
+        <% } else { %>
+          <li><a href="<%= generatePageUrl(i, queryFilter) %>"><%= i %></a></li>
+        <% } %>        
+      <% } %>
+      <%  if (pagination < totalPagination) { %>
+          <li><a href="<%= generatePageUrl(paginationOffset + pagesPerPagination, queryFilter) %>">»</a><li>
+      <% } %>
+      </ul>
+    </div>
+  </div>
+  <%- include('template/footer') %>
+
+</body>
+<script>
+  const statusFilter = document.querySelector('.search-filter')
+  statusFilter.addEventListener('click', (e) => {
+    statusFilter.submit()
+  })
+</script>
+</html>

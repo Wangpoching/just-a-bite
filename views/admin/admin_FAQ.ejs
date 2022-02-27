@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/admin_FAQ.css">
+  <script src="/FAQ.js"></script>
+</head>
+
+<body>
+
+  <%- include('template/admin-navbar') %>
+
+  <div class= "problem__wrapper">
+    <section class="problems">
+      <h2 class="problems__title">常見問題後台</h2>
+      <div class="problems__block">
+        <%if (FAQs.length) { %>
+          <% for (const FAQ of FAQs) { %>
+            <div class= "problem__instance">
+              <div class= "problem__instance-number">Q<%= FAQ.serial %>:</div>
+              <div class= "problem__instance-qa">
+                <div class= "problem__instance-q"><%= FAQ.question %></div>
+                <div class= "problem__instance-ans"><%= FAQ.answer %></div>
+              </div>
+              <div class="problem__instance-actions">
+                <a href="<%= `faq-edit?id=${FAQ.id}` %>"><img src="images/edit.png" /></a>
+                <a href="<%= `faq-delete?id=${FAQ.id}` %>"><img src="images/delete.png" /></a>
+              </div>
+            </div>
+          <% } %>
+        <% } %>
+      </div>
+    </section>  
+  </div>
+
+  <div class= "newproblem__wrapper">
+    <section class="newproblem">
+      <div class="newproblem__title">新增獎項</div>
+      <hr>
+      <div class="errmsg"><%= errorMessage %></div>
+      <form class="newproblem__info" action="/faq-create" method="post">
+        <div class="newproblem__info-content">
+          <label for="serial" class="required">流水號</label>
+          <input class="form-control" type="number" id="serial" name="serial" />
+        </div>
+        <div class="newproblem__info-content">
+          <label for="question" class="required">問題</label>
+          <textarea class="form-control" name="question" id="question" rows="2"></textarea>
+        </div>
+        <div class="newproblem__info-content">
+          <label for="answer" class="required">答案</label>
+          <textarea class="form-control" name="answer" id="answer" rows="10"></textarea>
+        </div>
+        <button class="button-upload" type="submit">上傳</button>
+      </form>
+    </section>
+  </div>
+  
+
+  <%- include('template/footer') %>
+
+</body>
+<script src="index.js"></script>
+<script>
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.newproblem')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+</script>
+</html>

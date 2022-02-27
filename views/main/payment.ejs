@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/payment.css">
+</head>
+
+<body>
+
+  <%- include('template/navbar') %>
+  <div class= "payment__wrapper">
+    <section class="payment">
+      <div class="payment__title">付款資訊</div>
+      <hr>
+      <h3>準備為訂單編號： <span><%= tradeInfo.MerchantOrderNo %></span> 付款</h3>
+      <div class="payment__info">
+      <% for (const orderDetail of orderDetails) { %>
+        <div class="payment__info-content">
+          <div class="item-image"><img src="<%= orderDetail.Menu.imageUrl %>"/></div>
+          <div class="item-info">
+            <div class="item-name"><%= orderDetail.Menu.name %></div>
+            <div class="item-details">
+              <div class="item-price">$<%= orderDetail.Menu.price %></div>
+              <div class="item-amount">x<%= orderDetail.amount %></div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      </div>
+      <div class="payment__amount">
+        <div><div>商品總金額</div><div>$<%= totalPrice %></div></div>
+        <div><div>運費總金額</div><div>$<%= totalPrice >= 1000? 0:99 %></div></div>
+        <div><h3>總付款金額</h3><h3>$<%= totalPrice >= 1000?  totalPrice:(totalPrice + 99) %></h3></div>
+      </div>
+      <form name="Spgateway" action="<%= tradeInfo.PayGateWay %>" method="POST">
+        <input type="hidden" name="MerchantID" value="<%= tradeInfo.MerchantID %>" readonly />
+        <input type="hidden" name="TradeInfo" value="<%= tradeInfo.TradeInfo %>" readonly />
+        <input type="hidden" name="TradeSha" value="<%= tradeInfo.TradeSha %>" readonly />
+        <input type="hidden" name="Version" value="<%= tradeInfo.Version %>" readonly />
+        <div class="buttons">
+          <div class="button-cancelled"><a href="/cart">取消</a></div>
+          <button class="button-upload" type="submit">進入付款頁面</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <%- include('template/footer')%>
+</body>
+</html>

@@ -1,0 +1,348 @@
+[class*="wrapper"] {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+h2 {
+	margin: 0;
+}
+
+.navbar {
+	box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+	height: 84px;
+}
+
+.navbar__wrapper {
+  height: 84px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.navbar__site-name a {
+	color: #489846;
+	font-size: 36px;
+	text-decoration: none;
+}
+
+.navbar__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+.navbar__list li {
+	margin-left: 35px;
+}
+
+.navbar__list li.active a, .navbar__list li:hover a {
+	background: #ff7286;
+	color: white;
+}
+
+.navbar__list li a {
+  text-decoration: none;
+  color: #010101;
+  padding: 12px 12px;
+  border-radius: 8px;
+  display: block;
+  transition: background 0.5s;
+  font-size: 18px;
+}
+
+.image__banner {
+	position: relative;
+	height: 450px;
+	background: url(images/banner.png) center/cover no-repeat;
+}
+
+.image__banner::after {
+	content: '';
+	position: absolute;
+	background: rgba(0, 0, 0, 0.2);
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.image__banner h1 {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	color: white;
+	z-index: 1;
+	top : 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 60px;
+	font-weight: bold;
+}
+
+.intro {
+	text-align: center;
+	margin-top: 80px;
+}
+
+.intro__title {
+	display: inline-block;
+	font-size: 36px;
+	margin-bottom: 36px;
+}
+
+.intro__title::before {
+	display: inline-block;
+	content: '';
+	width: 15px;
+	height: 36px;
+	background: #a3dea2;
+	vertical-align: text-top;
+	margin-right: 17px;
+}
+
+.intro__para {
+	font-size: 16px;
+	line-height: 2em;
+	margin: 0px 0px 68px 0px;
+}
+
+.intro__button {
+	display: inline-block;
+	font-size: 36px;	
+	height: 180px;
+	width: 210px;
+	border-radius: 10px;
+	color: #3e613d;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.intro__button:hover {
+	transform: scale(1.1);
+}
+
+.intro__buttons {
+	display: inline-block;
+	font-size: 36px;	
+	padding: 60px 80px;
+	border-radius: 10px;
+	color: #3e613d;
+}
+
+.intro__button:nth-of-type(1) {
+	background: #a8e8e1;
+	position: relative;
+}
+
+.intro__button:nth-of-type(2) {
+	background: #f9f9b5;
+	margin-left: 24px;
+	position: relative;
+}
+
+.intro__button a {
+	line-height: 180px;
+	text-decoration: none;
+	color: #000000;
+	padding: 72px 33px;
+}
+
+.intro__images {
+	display: flex;
+}
+
+.intro__images div {
+	width: 25%;
+	aspect-ratio: 1 / 1;
+}
+
+.intro__images div img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.intro__reviews {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+.intro__review {
+	position: relative;
+	flex: 1;
+	height: 205px;
+	border:  #d8eaef solid 1px;
+	box-shadow: -1.4px -1.4px 4px 0 var(--light-blue-grey);
+	border-radius: 5px;
+}
+
+[class*="intro__people"] {
+	position: absolute;
+	border:  #d8eaef solid 1px;
+	height: 60px;
+	width: 60px;
+    top: 0;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.intro__people::after {
+	display: block;
+	margin-top: 65px;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.intro__people.first {
+    background: url(images/p-1.png) center/cover;
+}
+
+.intro__people.first::after {
+    content: '國父桑';
+}
+
+.intro__people.second {
+    background: url(images/p-2.png) center/cover;
+}
+
+.intro__people.second::after {
+    content: '可達鴨';
+}
+
+.intro__people.third {
+    background: url(images/p-3.png) center/cover;
+}
+
+.intro__people.third::after {
+    content: '旅かえる旅行青蛙';
+}
+
+.intro__comment {
+	position: absolute;
+	top: 50%;
+    font-size: 16px;
+}
+
+.intro__review+.intro__review {
+	margin-left: 16px;
+}
+
+footer {
+	margin-top: 48px;
+}
+
+.footer__top {
+	background: #e8efee;
+	padding: 32px 0px;
+	color: #484848;
+}
+
+.footer__topwrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.footer__link {
+	display: flex;
+}
+
+.footer__link a {
+	text-decoration: none;
+	color: #484848;
+	transition: all 0.2s;
+}
+
+.footer__link a:hover {
+	color: #E0E0E0;
+}
+
+.footer__link a+div {
+	margin: 0 3px;
+}
+
+
+.footer__site {
+	color: #489846;
+	font-size: 36px;
+}
+
+.footer__info div+div {
+	margin-top: 10px;
+	margin-right: 16px;
+}
+
+.footer__bottom {
+	background: #35564b;
+	text-align: center;
+	padding: 12px 0px;
+	color: white;
+	font-size: 16px;
+}
+
+.footer__bottomwrapper {
+	display: flex;
+	justify-content: center;
+}
+
+@media(max-width: 768px) {
+	.navbar {
+        height: 120px;
+    }
+	.navbar__wrapper {
+	    flex-direction: column;
+	    height: 120px;
+	    justify-content: flex-end;
+	    padding: 0px;
+    }
+    .navbar__list {
+       width: 100%;
+       margin-top: 10px;
+    }
+	.navbar__list li {
+		margin-left: 0px;
+		flex: 1;
+		text-align: center;
+	}
+	.navbar__list li a {
+	    border-radius: 0;
+	    padding: 12px 8px;
+	}
+    .intro__buttons :nth-child(2) {
+	    background: #f9f9b5;
+	    margin-top: 16px;
+	    margin-left: 0px;
+    }
+	.intro__images {
+		flex-direction: column;
+	}
+	.intro__images  div {
+		width: 100%;
+	}
+
+    .footer__topwrapper {
+	    flex-direction: column-reverse;
+   }
+    .footer__info {
+	    margin-right: 0;
+	    margin-top: 16px;	    
+    }
+    .footer__bottomwrapper {
+	    flex-direction: column;
+    }
+    .intro__reviews {
+		flex-direction: column;
+		height: 700px;
+    }
+	.intro__review+.intro__review {
+		margin-left: 0px;
+   		margin-top: 60px;
+	}
+}

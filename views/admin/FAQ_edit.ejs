@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/FAQ_edit.css">
+</head>
+
+<body>
+  <%- include('template/admin-navbar') %>
+
+  <div class= "editFAQ__wrapper">
+    <section class="editFAQ">
+      <div class="editFAQ__title">編輯常見問答</div>
+      <hr />
+      <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="errmsg"><%= errorMessage %></div>
+      <% } %>
+      <form class="editFAQ__info" action="/FAQ-edit?id=<%= faq.id %>" method="post">
+        <div class="editFAQ__info-content">
+          <label for="serial" class="required">流水號</label>
+          <input class="form-control" type="number" id="serial" name="serial" value="<%= faq.serial %>"/>
+        </div>
+        <div class="editFAQ__info-content">
+          <label for="question" class="required">問題</label>
+          <textarea class="form-control" name="question" id="question" rows="2"><%= faq.question %></textarea>
+        </div>
+        <div class="editFAQ__info-content">
+          <label for="answer" class="required">回答</label>
+          <textarea class="form-control" name="answer" id="answer" rows="10"><%= faq.answer %></textarea>
+        </div>
+        <div class="buttons">
+          <div class="button-cancelled"><a href="/admin-faq">取消</a></div>
+          <button class="button-upload" type="submit">送出</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  
+  <%- include('template/footer')%>
+</body>
+<script src="index.js"></script>
+<script>
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.editFAQ__info')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+</script>
+</html>

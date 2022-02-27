@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/register.css">
+</head>
+
+<body>
+  <%- include('template/navbar') %>
+
+  <div class="register__wrapper">
+    <section class="register">
+      <h2 class="register__title">註冊</h2>
+      <form action="/register" method="POST">
+        <% if (errorMessage && errorMessage.length > 0) { %>
+          <div class='errmsg'><%= errorMessage %></div>
+        <% } %>
+        <div class="input__wrapper">
+          <div class="input__label">帳號</div>
+          <input class="input__field" type="text" name="username" />
+        </div>
+        <div class="input__wrapper">
+          <div class="input__label">密碼</div>
+          <input class="input__field" type="password" name="password" />
+        </div>
+        <button class="button-register">註冊</button>
+        <div class="button-login"><span>已經有帳號嗎?按這裡</span><a href="/login">登入</a></div>
+      </form>
+    </section>
+  </div>
+  <%- include('template/footer')%>
+</body>
+<script src="index.js"></script>
+<script>
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.register__wrapper')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+</script>
+</html>

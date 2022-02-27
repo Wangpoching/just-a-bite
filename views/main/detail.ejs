@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/detail.css">
+</head>
+
+<body>
+
+  <%- include('template/navbar') %>
+
+  <div class= "order__wrapper">
+    <section class="order">
+      <h2 class="order__title">訂單明細</h2>
+      <div class="order__number">訂單編號：CF200309125</div>
+      <div class="order__status">
+        <% 
+        const status = order.status
+        switch (status) { 
+            case 1: %>
+            訂單完成
+          <% break; 
+            case 2: %>
+            配送中
+          <% break;
+            case 3: %>
+            訂單取消
+          <% break; 
+          default: %>
+            訂單取消
+         <% } %>
+      </div>
+      <hr>
+      <table class="order__table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+          <th>商品</th>
+          <th>價格</th>
+          <th>數量</th>
+          <th>小計</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% 
+          let index = 1
+          for (const orderDetail of orderDetails ) { 
+        %>
+        <tr>
+          <td><%= index ++ %></td>
+          <td><img src="<%= orderDetail.Menu.imageUrl %>" /></td>
+          <td><%= orderDetail.Menu.name %></td>
+          <td>$<%= orderDetail.Menu.price %></td>
+          <td><%= orderDetail.amount %></td>
+          <td>$<%= orderDetail.amount * orderDetail.Menu.price %></td>
+        </tr>
+        <% } %>
+        <tr>
+          <td colspan="6"><%= order.amount %></td>
+        </tr>
+        <tr>
+          <td colspan="6"><span>購物滿 1000 免運! </span>運費：$<%= deliveryFee %></td>
+        </tr>
+        <tr>
+          <td colspan="6">總計：$
+            <%= order.amount >= 1000? order.amount:order.amount + deliveryFee %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <div class= "info__wrapper">
+    <section class="info">
+      <div class="info__title">帳單資訊</div>
+      <hr />
+      <table class="info__table">
+        <thead>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>姓名</td>
+          <td><%= order.name %></td>
+        </tr>
+        <tr>
+          <td>連絡電話</td>
+          <td><%= order.phone %></td>
+        </tr>
+        <tr>
+          <td>電子郵件</td>
+          <td><%= order.mail %></td>
+        </tr>
+        <tr>
+          <td>送餐地點</td>
+          <td><%= order.address %></td>
+        </tr>
+        <tbody>
+      </table>
+      <div class="button-back"><a href="/order">回訂單列表</a></div> 
+    </section>
+  </div>
+
+  <%- include('template/footer') %>
+
+</body>
+</html>

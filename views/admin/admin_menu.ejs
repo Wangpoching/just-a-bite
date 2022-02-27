@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/admin_menu.css">
+</head>
+
+<body>
+  <%- include('template/admin-navbar') %>
+
+  <div class= "menu__wrapper">
+    <section class="menu">
+      <h2 class="menu__title">菜單後台</h2>
+      <div class="dishes">
+        <% if (dishes.length) { %>
+          <% for (const dish of dishes) { %>
+            <div class="dish">
+              <img class="dish__img" src="<%= dish.imageUrl %>"></img>
+              <div class="dish__id hidden"><%= dish.id %></div>
+              <div class="dish__name">品名:<span class="dish__name-span"><%= dish.name %></span></div>
+              <div class="dish__amount">數量:<span class="dish__amount-span"><%= dish.amount %></span></div>
+              <div class="dish__price">價格:<span class="dish__price-span"><%= dish.price %></span></div>
+              <div class="dish__button button-pop">編輯</div>
+              <div class="dish__button"><a href="<%= `/menu-delete?id=${dish.id}` %> ">刪除</a></div>
+            </div>
+          <% } %>
+        <% } %>
+      </div>
+    </section>
+  </div>
+
+  <div class= "newdish__wrapper">
+    <section class="newdish">
+      <div class="newdish__title">新增販售品項</div>
+      <hr />
+      <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="errmsg"><%= errorMessage %></div>
+      <% } %>
+      <form class="newdish__info" action="/menu-create" method="post" enctype="multipart/form-data">
+        <div class="newdish__info-content">
+          <label for="name" class="required">品項名稱</label>
+          <input class="form-control" type="text" id="name" name="name" />
+        </div>
+        <div class="newdish__info-content">
+          <label for="price" class="required">價格</label>
+          <input class="form-control" name="price" id="price" type="number" step="1" min="0" />
+        </div>
+        <div class="newdish__info-content">
+          <label for="amount" class="required">可供應量</label>
+          <input class="form-control" name="amount" id="amount" />
+        </div>
+        <div class="newdish__info-content">
+          <label for="upload" class="required">選擇上傳圖檔</label>
+          <input id="upload" type="file" name="upload">
+        </div>
+        <button class="button-upload" type="submit">上傳</button>
+      </form>
+    </section>
+  </div>
+
+  <%- include('template/footer') %>
+
+</body>
+<script src="index.js"></script>
+<script>
+  const dishes = document.querySelector('.dishes')
+  const currentData = {}
+  dishes.addEventListener('click', (e) => {
+    // 彈跳視窗
+    if (e.target.classList.contains('button-pop')) {
+      const target = e.target
+      const parentNode = target.parentNode
+      target.classList.remove('button-pop')
+      parentNode.classList.add('selected')
+      parentNode.querySelectorAll('.dish__button')[1].classList.add('hidden')
+      // div to input
+      const dishNameDiv = parentNode.querySelector('.dish__name-span')
+      const dishAmountDiv = parentNode.querySelector('.dish__amount-span')
+      const dishPriceDiv = parentNode.querySelector('.dish__price-span')
+      dishNameDiv.contentEditable = true
+      dishAmountDiv.contentEditable = true
+      dishPriceDiv.contentEditable = true
+      const dishId = parentNode.querySelector('.dish__id').innerText
+      const closeButton = document.createElement('span')
+      parentNode.append(closeButton)
+      closeButton.outerHTML = `
+        <span class="button-remove">+</span>
+      `
+      target.classList.add('button-submit')
+      // insert form
+      const form = document.createElement('form')
+      const currentDiv = parentNode.querySelector('.dish__id')
+      target.parentNode.insertBefore(form, currentDiv)
+      form.outerHTML = `
+        <form class="editmenu__info" method="post" action="/menu-edit?id=${dishId}" enctype="multipart/form-data">
+          <input class="editmenu__info-content" type="file" name="upload">
+          <input name="name" type="hidden" />
+          <input name="amount" type="hidden" />
+          <input name="price" type="hidden" />
+        </form>
+      `
+      // keep old value
+      currentData[dishId] = [dishNameDiv.innerText, dishAmountDiv.innerText, dishPriceDiv.innerText]
+      return
+    }
+    // 送出表單
+    if (e.target.classList.contains('button-submit')) {
+      const target = e.target
+      const parentNode = target.parentNode      
+      const form = parentNode.querySelector('form')
+      const dishNameDiv = parentNode.querySelector('.dish__name-span')
+      const dishAmountDiv = parentNode.querySelector('.dish__amount-span')
+      const dishPriceDiv = parentNode.querySelector('.dish__price-span')
+      form.querySelectorAll('input')[1].value = dishNameDiv.innerText
+      form.querySelectorAll('input')[2].value = dishAmountDiv.innerText
+      form.querySelectorAll('input')[3].value = dishPriceDiv.innerText
+      form.submit()
+      return
+    }
+    //關閉彈跳視窗
+    if (e.target.classList.contains('button-remove')) {
+      window.location.href = "https://just-a-bite.bocyun.tw/admin-menu"
+      return
+    }
+    return
+  })
+
+
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.newdish')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+</script>
+</html>

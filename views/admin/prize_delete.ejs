@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/prize_delete.css">
+</head>
+
+<body>
+  <%- include('template/admin-navbar') %>
+
+  <div class= "deleteprize__wrapper">
+    <section class="deleteprize">
+      <div class="deleteprize__title">刪除獎項</div>
+      <hr />
+      <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="errmsg"><%= errorMessage %></div>
+      <% } %>
+      <form class="deleteprize__info" action="/prize-delete?id=<%= prize.id %>" method="post">
+        <input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
+        <div class="deleteprize__info-content">
+          <div>獎項名稱</div>
+          <div><%= prize.name %></div>
+        </div>
+        <div class="deleteprize__info-content">
+          <div>權重</div>
+          <div><%= prize.weight %></div>
+        </div>
+        <div class="deleteprize__info-content">
+          <div>獎項描述</div>
+          <div><%= prize.desc %></div>
+        </div>
+        <div class="deleteprize__info-content">
+          <div></div>
+          <img src="<%= prize.imageUrl %>" alt="一張圖片">
+        </div>
+        <div class="buttons">
+          <div class="button-cancelled"><a href="/admin-prize">取消</a></div>
+          <button class="button-delete" type="submit">確認刪除</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  
+  <%- include('template/footer')%>
+</body>

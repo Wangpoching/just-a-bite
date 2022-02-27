@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/admin_prize.css">
+</head>
+
+<body>
+  <%- include('template/admin-navbar') %>
+
+  <div class= "prizes__wrapper">
+    <section class="prizes">
+      <h2 class="prizes__title">抽獎後台</h2>
+      <% if (probErrorMessage && probErrorMessage.length > 0) { %>
+        <div class="errmsg-prob"><%= probErrorMessage %></div>
+      <% } %>
+      <form action="/edit-weights" method="post">
+        <table class="prizes__table" >
+          <thead>
+          <tr>
+            <th>id</th>
+            <th>名稱</th>
+            <th>內容</th>
+            <th>權重</th>
+            <th>機率</th>
+            <th>編輯/刪除</th>
+          </tr>
+          </thead>
+          <% if (prizes.length) { %>
+            <tbody>
+            <% for (const prize of prizes) { %> 
+              <tr>
+                <td><%= prize.id %></td>
+                <td><%= prize.name %></td>
+                <td><%= prize.desc %></td>
+                <td><%= prize.weight %></td>
+                <td><input name="<%= prize.id %>" value="<%= `${Math.round(((prize.weight/totalWeight) + Number.EPSILON) * 100) / 100}`%>"></input></td>
+                <td>
+                  <a class="button-edit" href="/prize-edit?id=<%= prize.id %>"><img src="images/edit.png" /></a>
+                  <a class="button-delete" href="/prize-delete?id=<%= prize.id %>"><img src="images/delete.png" /></a>
+                </td>
+              </tr>
+            <% } %>
+            <tr>
+              <td colspan="6"><%= `權重總和: ${totalWeight}` %></td>
+            </tr>
+            </tbody>
+          <% } %>
+        </table>
+        <button class="button-prob" type="submit">更新中獎機率</button>
+      </form>
+    </section>
+  </div>
+
+  <div class= "newprize__wrapper">
+    <section class="newprize">
+      <div class="newprize__title">新增獎項</div>
+      <hr />
+      <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="errmsg"><%= errorMessage %></div>
+      <% } %>
+      <form class="newprize__info" action="/prize-create" method="post" enctype="multipart/form-data">
+        <div class="newprize__info-content">
+          <label for="name" class="required">獎項名稱</label>
+          <input class="form-control" type="text" id="name" name="name" />
+        </div>
+        <div class="newprize__info-content">
+          <label for="prob" class="required">權重</label>
+          <input class="form-control" name="weight" id="prob" type="number" step="1" min="0" max="100" placeholder="請填 0~100 的整數" />
+        </div>
+        <div class="newprize__info-content">
+          <label for="desc" class="required">獎項描述</label>
+          <textarea class="form-control" name="desc" id="desc" rows="5"></textarea>
+        </div>
+        <div class="newprize__info-content">
+          <label for="upload" class="required">選擇上傳圖檔</label>
+          <input id="upload" type="file" name="upload">
+        </div>
+        <button class="button-upload" type="submit">上傳</button>
+      </form>
+    </section>
+  </div>
+  
+  <%- include('template/footer')%>
+</body>
+<script src="index.js"></script>
+<script>
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.newprize')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+  const probdDelegation = document.querySelector('.prizes')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg-prob')
+    focusinRemoveErrmsg(probdDelegation, errmsg)
+  }
+</script>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/order_edit.css">
+</head>
+
+<body>
+
+  <%- include('template/admin-navbar') %>
+  <form method="post" action="/order-edit">
+    <div class= "order__wrapper">
+      <section class="order">
+        <h2 class="order__title">編輯訂單</h2>
+        <div class="order__number">訂單編號：<%= order.serial %></div>
+        <input type="hidden" name="serial" value="<%= order.serial %>" />
+        <select name="status" class="order__status">
+          <% if (Number(order.status) !== 1 && Number(order.status) !== 2) { %>
+            <option value="1" >訂單取消</option>
+          <% } else { %>
+            <option value="1" <%= Number(order.status) === 1 ? 'selected' : '' %> >訂單完成</option>
+            <option value="2" <%= Number(order.status) === 2 ? 'selected' : '' %> >配送中</option>
+            <option value="3" <%= Number(order.status) === 3 ? 'selected' : '' %> >訂單取消</option>
+          <% } %>
+        </select>
+        <hr>
+        <table class="order__table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th></th>
+            <th>商品</th>
+            <th>價格</th>
+            <th>數量</th>
+            <th>小計</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% 
+            let index = 1
+            for (const orderDetail of orderDetails ) { 
+          %>
+          <tr>
+            <td><%= index ++ %></td>
+            <td><img src="<%= orderDetail.Menu.imageUrl %>" /></td>
+            <td><%= orderDetail.Menu.name %></td>
+            <td>$<%= orderDetail.Menu.price %></td>
+            <td><%= orderDetail.amount %></td>
+            <td>$<%= orderDetail.amount * orderDetail.Menu.price %></td>
+          </tr>
+          <% } %>
+          <tr>
+            <td colspan="6"><%= order.amount %></td>
+          </tr>
+          <tr>
+            <td colspan="6"><span>購物滿 1000 免運! </span>運費：$<%= deliveryFee %></td>
+          </tr>
+          <tr>
+            <td colspan="6">總計：$
+              <%= order.amount >= 1000? order.amount:order.amount + deliveryFee %>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div class= "info__wrapper">
+      <section class="info">
+        <div class="info__title">帳單資訊</div>
+        <hr />
+        <% if (errorMessage && errorMessage.length > 0) { %>
+          <div class="errmsg"><%= errorMessage %></div>
+        <% } %>
+        <table class="info__table">
+          <thead>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="required">姓名</td>
+            <td><input name="name" type="text" value="<%= order.name %>"></td>
+          </tr>
+          <tr>
+            <td class="required">連絡電話</td>
+            <td><input name="phone" type="phone" value="<%= order.phone %>"></td>
+          </tr>
+          <tr>
+            <td class="required">電子郵件</td>
+            <td><input name="mail" type="email" value="<%= order.mail %>"></td>
+          </tr>
+          <tr>
+            <td class="required">送餐地點</td>
+            <td><input name="address" type="text" value="<%= order.address %>"></td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="buttons">
+          <div class="button-back"><a href="/admin-order">回訂單後台</a></div>
+          <button class="button-submit">修改訂單</button>
+        </div>
+      </section>
+    </div>
+  </form>
+  <%- include('template/footer') %>
+
+</body>
+<script src="index.js"></script>
+<script>
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.info')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+</script>
+</html>

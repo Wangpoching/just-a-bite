@@ -1,0 +1,22 @@
+<% const navbar = [
+    ['<li', '><a href="/admin-prize">抽獎後臺</a></li>'],
+    ['<li', '><a href="/admin-menu">菜單後臺</a></li>'],
+    ['<li', '><a href="/admin-FAQ">FAQ 後臺</a></li>'],
+    ['<li', '><a href="/admin-order">訂單後臺</a></li>'],
+    ['<li', '><a href="/logout">登出</a></li>']
+   ]
+%>
+<nav class="navbar">
+  <div class="navbar__wrapper">
+    <div class="navbar__site-name"><a href="/index">Just A Bite!</a></div>
+    <div class="navbar__list">
+      <% for (let i in navbar) { %>
+        <% if (Number(i) === adminNavbarId) { %>
+          <%- navbar[i].join(' class="active"') %>
+        <% } else { %>
+          <%- navbar[i].join('') %>
+        <% } %>
+      <% } %>
+    </div>
+  </div>
+</nav>

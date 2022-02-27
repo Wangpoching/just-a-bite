@@ -1,0 +1,271 @@
+[class*="wrapper"] {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.navbar {
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  height: 84px;
+}
+
+.navbar__wrapper {
+  height: 84px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.navbar__site-name a {
+  color: #489846;
+  font-size: 36px;
+  text-decoration: none;
+}
+
+.navbar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar__list li {
+  margin-left: 35px;
+}
+
+.navbar__list li.active a, .navbar__list li:hover a {
+  background: #ff7286;
+  color: white;
+}
+
+.navbar__list li a {
+  text-decoration: none;
+  color: #010101;
+  padding: 12px 12px;
+  border-radius: 8px;
+  display: block;
+  transition: background 0.5s;
+  font-size: 18px;
+}
+
+.editprize {
+  margin-top: 60px;
+}
+
+.editprize__title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.editprize__info {
+  margin: 42px 30px 0 105px;
+}
+
+.editprize__info-content {
+  display: flex;
+  align-items: center;
+}
+
+.editprize__info-content label {
+  flex-basis: 120px;
+  text-align: right;
+}
+
+.editprize__info-content input, .editprize__info-content textarea {
+  box-sizing: border-box;
+  height: 38px;
+  padding: 5px 5px;
+  flex: 1;
+  margin-left: 20px;
+}
+
+.editprize__info-content img {
+  object-fit: cover;
+  width: 160px;
+  height: 160px;
+  margin-left: 20px;
+}
+
+.editprize__info-content+.editprize__info-content {
+  margin-top: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-cancelled,.button-upload {
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-top: 42px;
+  text-align: center;
+  line-height: 46px;
+  width: 184px;
+  height: 46px;
+  border: 1px solid #3f633c;
+  background-color: #f1fff2;
+}
+
+.button-cancelled a {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 52px;
+  color: #3f633c;
+}
+
+.required::after {
+  display: inline-block;
+  content: '*';
+  font-size: 5px;
+  color: #ff0000;
+}
+
+footer {
+  margin-top: 190px;
+}
+
+.footer__top {
+  background: #e8efee;
+  padding: 32px 0px;
+  color: #484848;
+}
+
+.footer__topwrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__link {
+  display: flex;
+}
+
+.footer__link a {
+  text-decoration: none;
+  color: #484848;
+  transition: all 0.2s;
+}
+
+.footer__link a:hover {
+  color: #E0E0E0;
+}
+
+.footer__link a+div {
+  margin: 0 3px;
+}
+
+
+.footer__site {
+  color: #489846;
+  font-size: 36px;
+}
+
+.footer__info div+div {
+  margin-top: 10px;
+  margin-right: 16px;
+}
+
+.footer__bottom {
+  background: #35564b;
+  text-align: center;
+  padding: 12px 0px;
+  color: white;
+  font-size: 16px;
+}
+
+.footer__bottomwrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.errmsg {
+  color: #ff0000;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  .navbar {
+    height: 120px;
+  }
+
+  .navbar__wrapper {
+    flex-direction: column;
+    height: 120px;
+    justify-content: flex-end;
+    padding: 0px;
+  }
+
+  .navbar__list {
+   width: 100%;
+   margin-top: 10px;
+  }
+
+  .navbar__list li {
+    margin-left: 0px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .navbar__list li a {
+    border-radius: 0;
+    padding: 12px 8px;
+  }
+
+  .footer__topwrapper {
+    flex-direction: column-reverse;
+  }
+
+  .footer__info {
+    margin-right: 0;
+    margin-top: 16px;     
+  }
+
+  .footer__bottomwrapper {
+    flex-direction: column;
+  }
+
+  .editprize {
+    text-align: center;
+  }
+
+  .button-cancelled,.button-upload {
+    margin-top: 42px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .editprize__info {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .editprize__info-content {
+    flex-direction: column;
+  }
+
+  .editprize__info-content label {
+    flex: 1;
+  }
+
+  .editprize__info-content input, .editprize__info-content textarea {
+    margin-left: 0;
+    margin-top: 20px;
+    width: 90%;
+  }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/menu.css">
+</head>
+
+<body>
+
+  <%- include('template/navbar') %>
+
+  <section class="image__banner"></section>
+
+  <div class= "best-selling__wrapper">
+    <section class="best-selling">
+      <h2 class="best-selling__title">熱銷搶購中</h2>
+      <div class="best-selling__images">
+        <% for (const bestselling of bestsellings) { %>
+          <% if (bestselling.amount === 0) { %>
+            <div class="sold-out"><img src="<%= bestselling.imageUrl %>" /><div></div></div>
+          <% } else { %>
+            <div><img src="<%= bestselling.imageUrl %>" /></div>
+          <% } %>
+        <% } %>
+      </div>
+    </section>  
+  </div>
+
+  <div class= "intro__wrapper">
+    <section class="intro">
+      <div class="intro__cover-img"><img src="images/computer.png" /></div>
+      <div class="intro__main">
+        <div class="intro__title">
+在家也能輕鬆
+咬一口我們的鮮甜清爽
+        </div>
+        <p class="intro__content">
+          您再也不必受限於時間或地點，隨時隨地透過我們24小時的線上購物選購，咬一口廚房堅持以細選食材、輕盈口感，呈現食材本身的原滋原味。
+          <br>
+          我們將咬一口的經典菜色研發製成相應當季的包裝食品及各式精美的伴手禮盒。將剛出爐的新鮮迅速送達家人手中，也適合與更多喜愛咬一口的親朋好友分享難得的健康滋味。         
+        </p>
+      </div>
+    </section>  
+  </div>
+
+  <div class= "menu__wrapper">
+    <section class="menu">
+      <div class="shopping-cart">
+        <a href="/cart"><img src="images/shopping-cart.png" /></a>
+        <% if (cartDetailsAmount) { %>
+          <div class="shopping-cart__amount"><%= cartDetailsAmount %></div>
+        <% } %>
+      </div>
+      <div class=menu__desc>立即輕鬆選購</div>
+      <div class="arrow-1"><div class="arrow-2"></div></div>
+      <div class="dishes">
+        <% for (const dish of dishes) { %>
+          <% if (dish.amount <= 0) { %>
+            <div class="dish">
+              <input type="hidden" name="dishId" value="<%= dish.id %>" />
+              <div class="sold-out"><img class="dish__img" src="<%= dish.imageUrl %>"></img><div></div></div>
+              <div class="dish__name"><%= dish.name %> | <span class="dish__price">$<%= dish.price %></span></div>
+              <button class="dish__button">加入購物車</button>
+            </div>
+          <% } else { %>
+            <form class="dish" method="post" action="/cart-add">
+              <input type="hidden" name="dishId" value="<%= dish.id %>" />
+              <img class="dish__img" src="<%= dish.imageUrl %>"></img>
+              <div class="dish__name"><%= dish.name %> | <span class="dish__price">$<%= dish.price %></span></div>
+              <button class="dish__button">加入購物車</button>
+            </form>
+          <% } %>
+        <% } %>
+      </div>
+    </section>
+  </div>
+
+  <div class= "location__wrapper">
+    <section class="location">
+      <div class="location__desc">還 是 想 要 親 身 體 會 我 們 的 服 務 ？</div>
+      <div class="arrow-1"><div class="arrow-2"></div></div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57852.09923426633!2d121.45906424174458!3d25.008398849852046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da80a7ad%3A0xacc4d11dc963103c!2z5Y-w5YyXMTAx!5e0!3m2!1szh-TW!2stw!4v1621761236594!5m2!1szh-TW!2stw" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>  
+  </div>
+
+  <%- include('template/footer') %>
+
+</body>
+</html>

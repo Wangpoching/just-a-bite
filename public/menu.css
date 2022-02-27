@@ -1,0 +1,416 @@
+[class*="wrapper"] {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.navbar {
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  height: 84px;
+}
+
+.navbar__wrapper {
+  height: 84px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.navbar__site-name a {
+  color: #489846;
+  font-size: 36px;
+  text-decoration: none;
+}
+
+.navbar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar__list li {
+  margin-left: 35px;
+}
+
+.navbar__list li.active a, .navbar__list li:hover a {
+  background: #ff7286;
+  color: white;
+}
+
+.navbar__list li a {
+  text-decoration: none;
+  color: #010101;
+  padding: 12px 12px;
+  border-radius: 8px;
+  display: block;
+  transition: background 0.5s;
+  font-size: 18px;
+}
+
+.image__banner {
+  position: relative;
+  height: 280px;
+  background: url(images/menu-banner.png) center/cover no-repeat;
+}
+
+.best-selling {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.best-selling__title {
+  display: inline-block;
+  font-size: 36px;
+  margin-bottom: 36px;
+}
+
+.best-selling__title::before {
+  display: inline-block;
+  content: '';
+  width: 15px;
+  height: 36px;
+  background: #a3dea2;
+  vertical-align: text-top;
+  margin-right: 17px;
+}
+
+.best-selling__images {
+  display: flex;
+}
+
+.best-selling__images > div {
+  flex: 1;
+  aspect-ration: 3/2;
+  position: relative;
+}
+
+.best-selling__images > div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dishes .sold-out {
+  position: relative;
+}
+
+.dishes .sold-out > div {
+  content: '';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 292px;
+  height: 292px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.best-selling .sold-out > div {
+  content: '';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.sold-out > div::after {
+  position: absolute;
+  display: inline-block;
+  content: '售完';
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 12px;
+  color: white;
+  width: 40px;
+  height: 40px;
+  background-color: #2f2f2f;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.intro__cover-img {
+  flex-basis: 674px;
+  height: 674px;
+}
+
+.intro__main {
+  margin-left: 43px;
+}
+
+.intro__title {
+  white-space: pre;
+  font-size: 26px;
+  font-weight: bold;
+  color: #357933;
+}
+
+.intro__content {
+  font-size: 16px;
+}
+
+.menu {
+  posotion: relative;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.menu__desc {
+  font-size: 18px;
+  color: #414141;
+}
+
+.arrow-1 {
+  margin: 0 auto;
+  margin-top: 30px;
+  position: relative;
+  width: 10px;
+  height:  10px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: rotate(45deg);
+}
+
+.arrow-2 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 10%;
+  bottom: 10%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.dishes {
+  margin: 0 auto;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.dish {
+  margin-top: 10px;
+  flex: 0 0 33%;
+}
+
+.dish__img {
+  object-fit: cover;
+  width: 292px;
+  height: 292px;
+}
+
+.dish__name {
+  font-weight: bold;
+  font-size: 18px;
+  color: #3f633c;
+  margin-top: 10px;
+}
+
+.dish__button {
+  font-size: 18px;
+  text-align: center;
+  color: #3f633c;
+  width: 292px;
+  margin: 22px auto 0 auto;
+  padding: 15px 0;
+  border: solid 1px #3f633c;
+  background-color: #f1fff2;
+  cursor: pointer;
+}
+
+.location {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.location__desc {
+  font-size: 18px;
+  color: #414141;
+}
+
+iframe {
+  margin-top: 80px;
+}
+
+footer {
+  margin-top: 48px;
+}
+
+.footer__top {
+  background: #e8efee;
+  padding: 32px 0px;
+  color: #484848;
+}
+
+.footer__topwrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__link {
+  display: flex;
+}
+
+.footer__link a {
+  text-decoration: none;
+  color: #484848;
+  transition: all 0.2s;
+}
+
+.footer__link a:hover {
+  color: #E0E0E0;
+}
+
+.footer__link a+div {
+  margin: 0 3px;
+}
+
+
+.footer__site {
+  color: #489846;
+  font-size: 36px;
+}
+
+.footer__info div+div {
+  margin-top: 10px;
+  margin-right: 16px;
+}
+
+.footer__bottom {
+  background: #35564b;
+  text-align: center;
+  padding: 12px 0px;
+  color: white;
+  font-size: 16px;
+}
+
+.footer__bottomwrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.shopping-cart {
+  text-align: center;
+  position: sticky;
+  width: 82px;
+  height: 82px;
+  margin-left: auto;
+  top: 80%;
+  border-radius: 50%;
+  box-shadow: -1.4px -1.4px 5.9px 0.1px #efefef;
+  background-color: #30762f;
+}
+
+.shopping-cart img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 41px;
+}
+
+.shopping-cart__amount {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  background: red;
+  color: white;
+  line-height: 30px;
+  border: 1px white solid;
+}
+
+@media(max-width: 768px) {
+
+  .navbar {
+    height: 120px;
+  }
+
+  .navbar__wrapper {
+    flex-direction: column;
+    height: 120px;
+    justify-content: flex-end;
+    padding: 0px;
+  }
+
+  .navbar__list {
+     width: 100%;
+     margin-top: 10px;
+  }
+
+  .navbar__list li {
+    margin-left: 0px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .navbar__list li a {
+    border-radius: 0;
+    padding: 12px 8px;
+  }
+
+  .best-selling__images {
+    flex-direction: column;
+  }
+
+  .intro {
+    flex-direction: column;
+  }
+
+  .intro__main {
+    margin: 0 auto;
+  }
+
+  .intro__title {
+    text-align: center;
+  }
+
+  .dishes {
+    flex-direction: column;
+  }
+
+  .dish {
+    flex: 1
+  }
+
+  .footer__topwrapper {
+    flex-direction: column-reverse;
+  }
+
+  .footer__info {
+    margin-right: 0;
+    margin-top: 16px;     
+  }
+
+  .footer__bottomwrapper {
+    flex-direction: column;
+  }
+}
+
+
+
+
+

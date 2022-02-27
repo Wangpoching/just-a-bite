@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/FAQ_delete.css">
+</head>
+
+<body>
+  <%- include('template/admin-navbar') %>
+
+  <div class= "deleteFAQ__wrapper">
+    <section class="deleteFAQ">
+      <div class="deleteFAQ__title">刪除常見問答</div>
+      <hr>
+      <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="errmsg"><%= errorMessage %></div>
+      <% } %>
+      <form class="deleteFAQ__info" action="/FAQ-delete?id=<%= id %>" method="post">
+        <input type="hidden" name="csrfToken" value="<%= csrfToken %>" />
+        <div class="deleteFAQ__info-content">
+          <div>流水號</div>
+          <div><%= faq.serial %></div>
+        </div>
+        <div class="deleteFAQ__info-content">
+          <div>問題</div>
+          <div><%= faq.question %></div>
+        </div>
+        <div class="deleteFAQ__info-content">
+          <div>回答</div>
+          <div><%= faq.answer %></div>
+        </div>
+        <div class="buttons">
+          <div class="button-cancelled"><a href="/admin-faq">取消</a></div>
+          <button class="button-delete" type="submit">確認刪除</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  
+  <%- include('template/footer')%>
+</body>
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <%- include('template/head') %>
+  <link rel="stylesheet" href="/order.css">
+</head>
+
+<body>
+
+  <%- include('template/navbar') %>
+
+  <div class= "orders__wrapper">
+    <section class="orders">
+      <h2 class="orders__title">我的訂單</h2>
+      <form class="search-order" action="/order">
+        <input name="serial" type="text" placeholder="搜尋訂單號碼" />
+        <button><img src="images/search.png"></button>
+      </form>
+      <table class="orders__table">
+        <thead>
+        <tr>
+          <th>訂單編號</th>
+          <th>訂單日期</th>
+          <th>金額(不含運)</th>
+          <th>狀態</th>
+        </tr>
+        </thead>
+        <% if (orders.length) { %> 
+          <tbody>
+          <% for (order of orders) { %>
+            <tr>
+              <td><a href="<%= `/detail?serial=${order.serial}` %>"><%= order.serial %></a></td>
+              <td><%= getTime(order.createdAt) %></td>
+              <td><%= order.amount %></td>
+              <% 
+              const status = order.status
+              switch (status) { 
+                  case 1: %>
+                  <td>訂單完成</td>
+                <% break; 
+                  case 2: %>
+                  <td>配送中</td>
+                <% break;
+                  case 3: %>
+                  <td class="canceled">訂單取消</td>
+                <% break; 
+                default: %>
+                  <td class="canceled">訂單取消</td>
+               <% } %>
+            </tr>
+          <% } %>
+          </tbody>
+        <% } %>
+      </table>
+    </section>
+    <div class="button-back"><a href="/menu">繼續購物</a></div> 
+  </div>
+
+  <%- include('template/footer') %>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <%- include('template/head')%>
+  <link rel="stylesheet" href="/prize_edit.css">
+</head>
+
+<body>
+  <%- include('template/admin-navbar') %>
+
+  <div class= "editprize__wrapper">
+    <section class="editprize">
+      <div class="editprize__title">編輯獎項</div>
+      <hr />
+      <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="errmsg"><%= errorMessage %></div>
+      <% } %>
+      <form class="editprize__info" action="/prize-edit?id=<%= prize.id %>" method="post" enctype="multipart/form-data">
+        <div class="editprize__info-content">
+          <label for="name" class="required">獎項名稱</label>
+          <input class="form-control" type="text" id="name" name="name" value="<%= prize.name %>"/>
+        </div>
+        <div class="editprize__info-content">
+          <label for="prob" class="required">權重</label>
+          <input class="form-control" name="weight" id="prob" type="number" step="1" min="0" max="100" placeholder="請填 0~100" value="<%= prize.weight %>"/>
+        </div>
+        <div class="editprize__info-content">
+          <label for="desc" class="required">獎項描述</label>
+          <textarea class="form-control" name="desc" id="desc"><%= prize.desc %></textarea>
+        </div>
+        <div class="editprize__info-content">
+          <label></label>
+          <img src="<%= prize.imageUrl %>" alt="一張圖片">
+        </div>
+        <div class="editprize__info-content">
+          <label for="upload">更新圖檔</label>
+          <input id="upload" type="file" name="upload">
+        </div>
+        <div class="buttons">
+          <div class="button-cancelled"><a href="/admin-prize">取消</a></div>
+          <button class="button-upload" type="submit">送出</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  
+  <%- include('template/footer')%>
+</body>
+<script src="index.js"></script>
+<script src="cart.js"></script>
+<script>
+  // 清除錯誤訊息
+  const delegation = document.querySelector('.editprize')
+  if (document.querySelector('.errmsg')) {
+    const errmsg = document.querySelector('.errmsg')
+    focusinRemoveErrmsg(delegation, errmsg)
+  }
+</script>
+</html>
