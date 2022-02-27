@@ -66,7 +66,7 @@ const userController = {
           }
           req.session.userId = user.id // 在 session 存進使用者名稱
           req.session.username = username // 在 session 存進使用者名稱
-          return res.redirect('/index')
+          return res.redirect('/')
         })
       }).catch((err) => {
         if (err.name === 'SequelizeUniqueConstraintError') {
@@ -115,7 +115,7 @@ const userController = {
         }
         req.session.userId = user.id // 在 session 存進使用者名稱
         req.session.username = username // 在 session 存進使用者名稱
-        return res.redirect('/index')
+        return res.redirect('/')
       })
     })
   },

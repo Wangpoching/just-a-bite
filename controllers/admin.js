@@ -443,7 +443,7 @@ const adminController = {
       const totalWeight = await Prize.sum('weight')
       req.totalWeight = totalWeight
     } catch (err) {
-      return res.redirect('/index')
+      return res.redirect('/')
     }
     next()
   },
@@ -455,7 +455,7 @@ const adminController = {
       })
       req.dishes = dishes
     } catch (err) {
-      return res.redirect('/index')
+      return res.redirect('/')
     }
     next()
   },
@@ -492,7 +492,7 @@ const adminController = {
       const FAQs = await FAQ.findAll()
       req.FAQs = FAQs
     } catch (err) {
-      return res.redirect('/index')
+      return res.redirect('/')
     }
     next()
   },
