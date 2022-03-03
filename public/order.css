@@ -93,6 +93,9 @@ h2 {
 }
 
 .search-order button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 38px;
   height: 38px;
@@ -101,9 +104,7 @@ h2 {
 }
 
 .search-order img {
-  object-fit: cover;
-  width: 28px;
-  height: 28px;
+  height: 70%;
 }
 
 table {
